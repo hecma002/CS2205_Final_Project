@@ -1,1 +1,3 @@
-# CS2205_Final_Project
+# CS2205 - Phương pháp Nghiên cứu khoa học
+
+## Đồ án cuối kỳ
