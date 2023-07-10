@@ -3,3 +3,7 @@
 *.fls
 *.log
 *.gz
+*.bbl
+*.blg
+*.xml
+*.bcf
