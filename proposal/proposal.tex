@@ -19,11 +19,9 @@
 \begin{document}
 % \title{\large{ \textbf{MỘT KHUÔN KHỔ HỖ TRỢ LỰA CHỌN DỊCH VỤ CỦA CÁC NHÀ CUNG CẤP ĐIỆN TOÁN ĐÁM MÂY DỰA TRÊN ĐIỂM CHUẨN CẤU HÌNH MÁY ẢO}} \\[10pt] 
 % \normalsize{A SUPPORTING FRAMEWORK FOR SERVICE SELECTION OF CLOUD PROVIDER \\  BY VIRTUAL MACHINE ‘S SPEC BENCHMARK}}
-
 % \author{\IEEEauthorblockN{Son Nguyen-Hong\IEEEauthorrefmark{1}} \\
 % \IEEEauthorblockA{University of Information Technology - Vietnam National University HoChiMinh City \\
 % sonnh.17@grad.uit.edu.vn}}
-
 
 % \maketitle
 
@@ -35,17 +33,43 @@
 
 Từ nhu cầu đó, CloudBench được phát triển như một công cụ hỗ trợ người dùng trong việc lựa chọn dịch vụ từ các nhà cung cấp điện toán đám mây. CloudBench sử dụng terraform API để tự động tạo các máy ảo Linux trên các nền tảng như AWS và GCP. Đồng thời, nó sử dụng các công cụ như Passmark, FIO, Iozone và Speedtest để đo lường hiệu suất của CPU, bộ nhớ, disk và network. Các thông số thu thập từ các máy chủ được hiển thị một cách trực quan thông qua Grafana. Người dùng có thể truy cập vào trang web để xem biểu đồ và bảng thống kê, đánh giá tổng quan, so sánh hiệu năng và giá cả của các nhà cung cấp điện toán đám mây, từ đó đáp ứng được yêu cầu kỹ thuật của họ. \\
 
-\textbf{GIỚI THIỆU}: Khái niệm về điện toán đám mây lần đầu được đưa ra bởi Jonh McCarthy: “Một ngày nào đó máy tính có thể được tổ chức và cung cấp như một tiện ích công cộng như dịch vụ điện thoại hay vận chuyển"\cite{garfinkel1999architects}. Một trong những công ty đầu tiên bắt đầu hiện thực hóa ý tưởng điện toán đám mây là Salesforce. Công ty này cung cấp dịch vụ quản lý quan hệ khách hàng dưới dạng SaaS\footnotemark \footnotetext{Software as a service}. Từ đó tới nay, rất nhiều công ty lớn như Amazon, Google, Microsoft đã tham gia vào sân chơi này, tạo ra rất nhiều sản phẩm dịch vụ để đáp ứng nhu cầu ngày càng tăng của thị trường. Song hành với đó, số lượng dịch vụ có thể sử dụng càng ngày càng lớn. Chỉ riêng ba nhà cung cấp lớn nhất là Amazon, Google, Microsoft đã lên tới hơn 600 dịch vụ \cite{amazon2023whatis,googlecloud2023product,Azure2023WhatisAzure}. Mỗi dịch vụ trong đó lại bao gồm nhiều loại với những sự lựa chọn đa dạng. Một \textit{"ma trận"} các lựa chọn đòi hỏi lượng kiến thức hoặc kinh phí lớn để đi đến quyết định đúng đắn.
+\textbf{GIỚI THIỆU}: Khái niệm về điện toán đám mây lần đầu được đưa ra bởi Jonh McCarthy: “Một ngày nào đó máy tính có thể được tổ chức và cung cấp như một tiện ích công cộng như dịch vụ điện thoại hay vận chuyển"\cite{garfinkel1999architects}. Từ đó tới nay, rất nhiều công ty lớn như Amazon, Google, Microsoft đã tham gia vào sân chơi này, tạo ra rất nhiều sản phẩm dịch vụ để đáp ứng nhu cầu ngày càng tăng của thị trường. Song hành với đó, số lượng dịch vụ có thể sử dụng càng ngày càng lớn. Chỉ riêng ba nhà cung cấp lớn nhất là Amazon, Google, Microsoft đã lên tới hơn 600 dịch vụ . Mỗi dịch vụ trong đó lại bao gồm nhiều loại với những sự lựa chọn đa dạng. Một \textit{"ma trận"} các lựa chọn đòi hỏi lượng kiến thức hoặc kinh phí lớn để đi đến quyết định đúng đắn.\\
+% Một trong những công ty đầu tiên bắt đầu hiện thực hóa ý tưởng điện toán đám mây là Salesforce. Công ty này cung cấp dịch vụ quản lý quan hệ khách hàng dưới dạng SaaS\footnotemark \footnotetext{Software as a service}.
+% \cite{amazon2023whatis,googlecloud2023product,Azure2023WhatisAzure}
+% \begin{figure}[h!]
+%   \centering
+%   \includegraphics[scale=0.3]{imgs/cloud-services.png}
+%   \label{fig:cloud-services}
+% \end{figure} \\
+
+Hiểu được những yêu cầu đó, các nhà cung cấp có những xuất bản riêng \cite{geewax2018google, wittig2018amazon} giúp người dùng dễ dàng hơn trong lựa chọn dịch vụ. Tuy vậy, những xuất bản này có những hạn chế như được thiết kế quá dài, quá chi tiết tới những cam kết, tính năng, những nội dung tổng quan còn chưa đầy đủ. Cơ cấu tính giá dịch vụ chưa thực sự rõ ràng bởi có quá nhiều hạng mục được tính phí. Một hạn chế khác là các xuất bản này, do hạn chế về luật và quy tắc kinh doanh, chưa đưa ra được những đánh giá về dịch vụ của mình và các đối thủ cạnh tranh trực tiếp. \\
+
+Trong đề tài này, chúng tôi nghiên cứu các công cụ đã được kiểm chứng\cite*{Passmark2023Performancetest, Axboe2023fio, Iozone2016Benchmark, OOKLA2023Speedtest} để tiến hành điểm chuẩn máy ảo Linux của AWS và GCP và áp dụng các phương pháp mới để tự động hóa quá trình điểm chuẩn. Đây là những công cụ mã nguồn mở (hoặc có phiên bản sử dụng miễn phí) manh, cộng đồng lớn và có dữ liệu tham chiếu tốt. Grafana\cite{chakraborty2021grafana} cũng được nghiên cứu như là một ứng dụng để thể hiện các thông số thành biểu đồ, bảng biểu giúp người dùng trực quan so sánh. \\
+
+\textbf{Input}: Thông tin nhà cung cấp \textit{(aws, gcp)} và loại máy chủ ảo \textit{(m5.xlarge, m5.2xlarge, c5.xlarge, c2-standard-4, n1-custom-4-16384)}\\
+
+\textbf{Output}: Một nhóm biểu đồ thể hiện tương quan giữa các loại máy chủ ảo \textit{(như hình \ref{fig:grafana-dashboard})}.
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.3]{imgs/cloud-services.png}
-  \label{fig:cloud-services}
+  \includegraphics[scale=0.3]{imgs/grafana-dashboard.png}
+  \caption{Mô tả kết quả đề tài trên dashboard}
+  \label{fig:grafana-dashboard}
 \end{figure} \\
-Hiểu được những yêu cầu đó, các nhà cung cấp có những xuất bản riêng \cite{geewax2018google, wittig2018amazon} giúp người dùng dễ dàng hơn trong lựa chọn dịch vụ
 
+\textbf{Mục tiêu}:
+\begin{itemize}
+  \item Nghiên cứu các công cụ \cite{Passmark2023Performancetest, Axboe2023fio, Iozone2016Benchmark, OOKLA2023Speedtest} cùng các thông số điểm chuẩn của nó, áp dụng tùy chỉnh trên Linux Cloud.
+  \item Nghiên cứu phương pháp tạo máy ảo bằng Terraform\cite{zadka2022terraform}.
+  \item So sánh kết quả, trực quan hóa thông số trên website bằng Grafana Dashboard.
+\end{itemize} 
 
+\textbf{Nội dung}:
+\begin{itemize}
+  \item Nghiên cứu các
+\end{itemize}
 % \bibliographystyle{plain} % We choose the "plain" reference style
 % \bibliography{references} % Entries are in the refs.bib file
+\newpage
 \printbibliography[heading=bibintoc, title = {TÀI LIỆU THAM KHẢO}]
 \end{document}
 

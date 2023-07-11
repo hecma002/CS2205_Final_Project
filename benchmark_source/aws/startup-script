@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# variable
+
+BENCH_ROOT_DIR="/tmp/benchmark"
+SSH_KEY="-----BEGIN RSA PRIVATE KEY-----
+-----END RSA PRIVATE KEY-----
+"
+
+SOURCE_URL="git@bitbucket.org:<username>/benchmark_source.git"
+
+save_machinetype() {
+     if [ -e '/tmp/machinetype' ];
+    then
+        rm -rf /tmp/machinetype
+    else
+          machinetype=`curl http://169.254.169.254/latest/meta-data/instance-type`
+          echo "aws_${machinetype}_" > /tmp/machinetype
+     fi
+}
+
+bitbucket_setup() {
+    if [ -e '~/.ssh/id_rsa' ];
+    then
+        rm -rf ~/.ssh/id_rsa
+    else
+        mkdir ~/.ssh
+        touch ~/.ssh/id_rsa
+        echo "$SSH_KEY" > ~/.ssh/id_rsa
+        chmod 400 ~/.ssh/id_rsa
+    fi
+    yum -y install git
+    touch ~/.ssh/known_hosts
+    ssh-keyscan -t rsa -H bitbucket.org >> ~/.ssh/known_hosts
+    echo "clone status: " "$(git clone $SOURCE_URL $BENCH_ROOT_DIR)" >> $BENCH_ROOT_DIR/install.log
+    chmod +x $BENCH_ROOT_DIR/benchmark/*.sh
+}
+
+main() {
+    save_machinetype
+    bitbucket_setup
+    chmod +x $BENCH_ROOT_DIR/*.sh
+    cd $BENCH_ROOT_DIR && sh $BENCH_ROOT_DIR/env.sh
+
+}
+
+main
