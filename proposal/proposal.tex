@@ -1,5 +1,5 @@
-% \documentclass{IEEEtran}
-\documentclass{article}
+\documentclass{IEEEtran}
+% \documentclass{article}
 \usepackage[utf8]{vietnam}
 \usepackage{tabularx}
 \usepackage{geometry}
@@ -7,6 +7,7 @@
 \usepackage{blindtext}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{caption}
 \usepackage[sorting=nyt]{biblatex}
 \geometry{
   paper=a4paper,
@@ -18,17 +19,17 @@
 }
 \addbibresource{references.bib}
 \begin{document}
-% \title{\large{ \textbf{MỘT KHUÔN KHỔ HỖ TRỢ LỰA CHỌN DỊCH VỤ CỦA CÁC NHÀ CUNG CẤP ĐIỆN TOÁN ĐÁM MÂY DỰA TRÊN ĐIỂM CHUẨN CẤU HÌNH MÁY ẢO}} \\[10pt] 
-% \normalsize{A SUPPORTING FRAMEWORK FOR SERVICE SELECTION OF CLOUD PROVIDER \\  BY VIRTUAL MACHINE ‘S SPEC BENCHMARK}}
-% \author{\IEEEauthorblockN{Son Nguyen-Hong\IEEEauthorrefmark{1}} \\
-% \IEEEauthorblockA{University of Information Technology - Vietnam National University HoChiMinh City \\
-% sonnh.17@grad.uit.edu.vn}}
+\title{\large{ \textbf{MỘT KHUÔN KHỔ HỖ TRỢ LỰA CHỌN DỊCH VỤ CỦA CÁC NHÀ CUNG CẤP ĐIỆN TOÁN ĐÁM MÂY DỰA TRÊN ĐIỂM CHUẨN CẤU HÌNH MÁY ẢO}} \\[10pt] 
+\normalsize{A SUPPORTING FRAMEWORK FOR SERVICE SELECTION OF CLOUD PROVIDER \\  BY VIRTUAL MACHINE ‘S SPEC BENCHMARK}}
+\author{\IEEEauthorblockN{Son Nguyen-Hong\IEEEauthorrefmark{1}} \\
+\IEEEauthorblockA{University of Information Technology - Vietnam National University HoChiMinh City \\
+sonnh.17@grad.uit.edu.vn}}
 
-% \maketitle
+\maketitle
 
-\textbf{TÊN ĐỀ TÀI:MỘT KHUÔN KHỔ HỖ TRỢ LỰA CHỌN DỊCH VỤ CỦA CÁC NHÀ CUNG CẤP ĐIỆN TOÁN ĐÁM MÂY DỰA TRÊN ĐIỂM CHUẨN CẤU HÌNH MÁY ẢO} \\
+% \textbf{TÊN ĐỀ TÀI:MỘT KHUÔN KHỔ HỖ TRỢ LỰA CHỌN DỊCH VỤ CỦA CÁC NHÀ CUNG CẤP ĐIỆN TOÁN ĐÁM MÂY DỰA TRÊN ĐIỂM CHUẨN CẤU HÌNH MÁY ẢO} \\
 
-\textbf{TÊN ĐỀ TÀI TIẾNG ANH: A SUPPORTING FRAMEWORK FOR SERVICE SELECTION OF CLOUD PROVIDER BY VIRTUAL MACHINE ‘S SPEC BENCHMARK} \\
+% \textbf{TÊN ĐỀ TÀI TIẾNG ANH: A SUPPORTING FRAMEWORK FOR SERVICE SELECTION OF CLOUD PROVIDER BY VIRTUAL MACHINE ‘S SPEC BENCHMARK} \\
 
 \textbf{TÓM TẮT}: Trong giai đoạn phát triển mạnh mẽ của điện toán đám mây, việc lựa chọn dịch vụ và nhà cung cấp phù hợp là một thách thức đáng kể. Số lượng nhà cung cấp rất lớn, mỗi nhà cung cấp lại cung cấp nhiều dịch vụ với mức giá và cam kết chất lượng khác nhau. Những cam kết này phức tạp và thường không dễ kiểm chứng, vì công cụ theo dõi hiệu suất thường được thiết kế bởi từng nhà cung cấp. Do đó, việc lựa chọn đòi hỏi sự hiểu biết cao về lĩnh vực này hoặc việc thuê những chuyên gia từ nhà cung cấp. Điều này đã làm giảm sự đơn giản và tiết kiệm mà điện toán đám mây mang lại. \\
 
@@ -37,29 +38,32 @@ Từ nhu cầu đó, CloudBench được phát triển như một công cụ h�
 \textbf{GIỚI THIỆU}: Khái niệm về điện toán đám mây lần đầu được đưa ra bởi Jonh McCarthy: “Một ngày nào đó máy tính có thể được tổ chức và cung cấp như một tiện ích công cộng như dịch vụ điện thoại hay vận chuyển"\cite{garfinkel1999architects}. Từ đó tới nay, rất nhiều công ty lớn như Amazon, Google, Microsoft đã tham gia vào sân chơi này, tạo ra rất nhiều sản phẩm dịch vụ để đáp ứng nhu cầu ngày càng tăng của thị trường. Song hành với đó, số lượng dịch vụ có thể sử dụng càng ngày càng lớn. Chỉ riêng ba nhà cung cấp lớn nhất là Amazon, Google, Microsoft đã lên tới hơn 600 dịch vụ . Mỗi dịch vụ trong đó lại bao gồm nhiều loại với những sự lựa chọn đa dạng. Một \textit{"ma trận"} các lựa chọn đòi hỏi lượng kiến thức hoặc kinh phí lớn để đi đến quyết định đúng đắn.\\
 % Một trong những công ty đầu tiên bắt đầu hiện thực hóa ý tưởng điện toán đám mây là Salesforce. Công ty này cung cấp dịch vụ quản lý quan hệ khách hàng dưới dạng SaaS\footnotemark \footnotetext{Software as a service}.
 % \cite{amazon2023whatis,googlecloud2023product,Azure2023WhatisAzure}
-% \begin{figure}[h!]
-%   \centering
-%   \includegraphics[scale=0.1]{imgs/gcp_services.jpg}
-%   \label{fig:gcp-services}
-% \end{figure} 
-% \begin{figure}[h!]
-%   \centering
-%   \includegraphics[scale=0.2]{imgs/aws-toolkit.png}
-%   \label{fig:aws-services}
-% \end{figure} 
 
-\begin{figure}[!htb]
-  \begin{minipage}{0.48\textwidth}
-    \centering
-    \includegraphics[width=.7\linewidth]{imgs/gcp_services.jpg}
-    \caption{GCP services}\label{Fig:gcp_services}
-  \end{minipage}\hfill
-  \begin{minipage}{0.48\textwidth}
-    \centering
-    \includegraphics[width=.7\linewidth]{imgs/aws-toolkit.png}
-    \caption{AWS Services}\label{Fig:aws_services}
-  \end{minipage}
-\end{figure}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.1]{imgs/gcp_services.jpg}
+  \caption{GCP services}
+  \label{fig:gcp-services}
+\end{figure} 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.18]{imgs/aws-toolkit.png}
+  \caption{AWS Services}
+  \label{fig:aws-services}
+\end{figure} 
+
+% \begin{figure}[!htb]
+%   \begin{minipage}{0.48\textwidth}
+%     \centering
+%     \includegraphics[width=.7\linewidth]{imgs/gcp_services.jpg}
+%     \caption{GCP services}\label{Fig:gcp_services}
+%   \end{minipage}\hfill
+%   \begin{minipage}{0.48\textwidth}
+%     \centering
+%     \includegraphics[width=.7\linewidth]{imgs/aws-toolkit.png}
+%     \caption{AWS Services}\label{Fig:aws_services}
+%   \end{minipage}
+% \end{figure}
 
 Hiểu được những yêu cầu đó, các nhà cung cấp có những xuất bản riêng \cite{geewax2018google, wittig2018amazon} giúp người dùng dễ dàng hơn trong lựa chọn dịch vụ. Tuy vậy, những xuất bản này có những hạn chế như được thiết kế quá dài, quá chi tiết tới những cam kết, tính năng, những nội dung tổng quan còn chưa đầy đủ. Cơ cấu tính giá dịch vụ chưa thực sự rõ ràng bởi có quá nhiều hạng mục được tính phí. Một hạn chế khác là các xuất bản này, do hạn chế về luật và quy tắc kinh doanh, chưa đưa ra được những đánh giá về dịch vụ của mình và các đối thủ cạnh tranh trực tiếp. \\
 
@@ -71,10 +75,16 @@ Trong đề tài này, chúng tôi nghiên cứu các công cụ đã được k
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=1.0]{imgs/grafana-dashboard.png}
+  \includegraphics[scale=0.5]{imgs/grafana-dashboard.png}
   \caption{Mô tả kết quả đề tài trên dashboard}
   \label{fig:grafana-dashboard}
 \end{figure}
+% \begin{figure}[h!]
+%   \centering
+%   \includegraphics[scale=1.0]{imgs/grafana-dashboard.png}
+%   \caption{Mô tả kết quả đề tài trên dashboard}
+%   \label{fig:grafana-dashboard}
+% \end{figure}
 \textbf{Mục tiêu:} Nghiên cứu các phần mềm điểm chuẩn hiện có\cite*{Passmark2023Performancetest, Axboe2023fio, Iozone2016Benchmark, OOKLA2023Speedtest} và áp dụng chúng trong đánh giá chất lượng của máy ảo, xây dựng ứng dụng minh họa là một website. \\
 
 \textbf{Nội dung:}
